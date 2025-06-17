@@ -1,0 +1,306 @@
+/* Basic Reset & Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Accent Color Variable */
+:root {
+    --accent-color: #c4ef16;
+}
+
+/* Header Styling */
+header {
+    background-color: #fff;
+    padding: 1rem 0;
+    border-bottom: 3px solid var(--accent-color);
+    position: relative; /* For positioning nav items if needed */
+}
+
+header nav {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Push logo/brand to left and nav to right */
+    align-items: center;
+    padding: 0 1rem; /* Add some padding to nav container */
+    /* Removed: justify-content: space-between; as hamburger is on the right in mobile. Re-evaluate if logo added left. */
+}
+
+.hamburger-button {
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.hamburger-button:hover {
+    color: var(--accent-color);
+}
+
+/* Simplified header nav link selectors */
+#main-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Ensures items are in a row by default */
+    justify-content: center; /* Centers items if space allows, or use margin auto on ul for right align */
+}
+
+#main-nav-links li {
+    display: inline-block; /* Still useful if flex settings change */
+    margin: 0 15px;
+}
+
+#main-nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#main-nav-links li a:hover {
+    color: #000;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+/* Hero Section Styling */
+#hero {
+    background-color: #333; /* Dark background for contrast */
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+#hero h2 {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+}
+
+/* Generic Section Styling */
+section {
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 0.5rem auto 0;
+}
+
+/* Services Section Specifics */
+#services ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#services ul li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+/* Simplified service icon selector */
+#services li .fas {
+    color: var(--accent-color);
+    font-size: 2em;
+    margin-bottom: 0.75rem;
+    display: block;
+    text-align: center;
+}
+
+#services li h3 {
+    color: #333;
+    margin-top: 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#services li p {
+    text-align: center;
+}
+
+
+/* Portfolio Section Specifics */
+#portfolio .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.portfolio-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden; /* Ensures image border-radius is respected if top-applied */
+    text-align: center; /* Center content within item */
+}
+
+.portfolio-item img {
+    /* width: 100%; height: auto; display: block; are covered by global img rule */
+    border-bottom: 3px solid var(--accent-color); /* Accent border below image */
+}
+
+.portfolio-item h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.portfolio-item p {
+    font-size: 0.9rem;
+    color: #666;
+    padding: 0 1rem 1rem 1rem;
+    line-height: 1.5;
+}
+
+
+/* About Us Section Specifics */
+#about-us {
+    background-color: #fff;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: #aaa;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Basic Responsiveness */
+@media (max-width: 768px) {
+    header nav {
+        /* justify-content: flex-end; -- already set for hamburger to be on the right */
+        /* If a logo were on the left, this would need to be space-between and hamburger order adjusted */
+    }
+
+    .hamburger-button {
+        display: block;
+        z-index: 1001;
+        /* position: relative; -- not strictly needed unless for specific stacking context not apparent */
+    }
+
+    /* Simplified media query selectors for nav */
+    #main-nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: calc(1rem + 1rem + 3px + 1rem); /* Approximate header height: padding + text + border + some_offset */
+        /* A more robust way would be to get header height with JS or use CSS vars if header height is dynamic */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid #eee;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    #main-nav-links.nav-active {
+        display: flex;
+    }
+
+    #main-nav-links li {
+        display: block;
+        margin: 0; /* Reset margin for stacked links */
+        width: 100%;
+        text-align: center;
+    }
+
+    #main-nav-links li a {
+        display: block;
+        padding: 15px 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    #main-nav-links li:last-child a {
+        border-bottom: none;
+    }
+
+    #hero h2 {
+        font-size: 2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    #services ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #services ul li {
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    #services ul li .fas {
+        font-size: 1.8em;
+    }
+
+    /* Ensured #services li text-align: center for mobile was already set */
+
+    #portfolio .portfolio-grid {
+        grid-template-columns: 1fr; /* Stack portfolio items on smaller screens */
+        gap: 1rem;
+    }
+
+    .portfolio-item h3 {
+        font-size: 1.3rem;
+    }
+    .portfolio-item p {
+        font-size: 0.85rem;
+    }
+
+}
+
+/* Image Responsiveness (General rule) - Already present but ensure it's effective */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
